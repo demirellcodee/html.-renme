@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barışalım mı?</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background: #efd8d8;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 40px 20px;
+    }
+   #ayicik {
+      display: block;
+      margin: 0 auto 30px auto;
+      max-width: 90%;
+      width: 400px;
+    }
+    h1 {
+      color: #d2527f;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 1.4rem;
+      padding: 12px 30px;
+      margin: 10px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      color: white;
+      min-width: 140px;
+      max-width: 90%;
+    }
+
+    #evet {
+      background-color: #ff6699;
+      z-index: 1;
+    }
+
+    #evet:hover {
+      background-color: #ff3366;
+    }
+
+    #hayir {
+      background-color: #999;
+    }
+
+    #hayir:hover {
+      background-color: #666;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fff8f0;
+      z-index: 9999;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    #overlay img {
+      width: 400px;
+      max-width: 80%;
+      margin-bottom: 60px;
+    }
+
+    #overlay p {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #d2527f;
+      animation: fadeInZoom 1s ease-out forwards;
+    }
+
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .fullscreen-button {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      font-size: 3rem !important;
+      border-radius: 0 !important;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+<img src="Happy Love You Sticker by milkmochabear.gif" id="ayicik" alt="Ayıcık" />
+  <h1 id="baslik">Barışalım mı?</h1>
+  <button id="evet">Evet 💖</button>
+  <button id="hayir">Hayır ❌</button>
+
+  <div id="overlay">
+    <img src="Happy Love You Sticker by milkmochabear.gif" alt="Ayıcık">
+    <p>Kıyamayacağını biliyordum 💖</p>
+  </div>
+
+  <script>
+    const evet = document.getElementById("evet");
+    const hayir = document.getElementById("hayir");
+    const baslik = document.getElementById("baslik");
+    const overlay = document.getElementById("overlay");
+
+    const yazilar = [
+      "evettt",
+      "EVETTTT",
+      "barısalımmmm",
+      "barıstık gibi",
+      "evett",
+      "barıştıkk"
+    ];
+const sorular = [
+  "Barışalım mı?",
+  "gerçekten çok üzgünüm",
+  "Yumuşadık mı???",
+  "çokkk üzgünüm gerçektenn",
+  "affettin mi beni?",
+  "barıştık mı??"
+];
+
+
+    let sayac = 0;
+    let fontSize = 16;
+
+hayir.addEventListener("click", () => {
+ sayac++;
+  fontSize += 30;
+  evet.style.fontSize = fontSize + "px";
+  evet.innerText = yazilar[sayac];
+  baslik.innerText = sorular[sayac];
+
+  if (sayac === yazilar.length - 1) {
+    evet.classList.add("fullscreen-button");
+    hayir.style.display = "none";
+    baslik.style.display = "none";
+  }
+ 
+});
+
+
+    evet.addEventListener("click", () => {
+      if (sayac === yazilar.length - 1) {
+        document.body.innerHTML = ""; // her şeyi temizle
+        document.body.appendChild(overlay);
+        overlay.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
